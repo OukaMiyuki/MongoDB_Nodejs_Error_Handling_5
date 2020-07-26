@@ -1,6 +1,6 @@
 require('express-async-errors');
 const winston = require('winston');
-require('winston-mongodb');
+require('winston-mongodb'); //First you need to install winston-mongodb using npm
 const error = require('./Middleware/error');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -14,9 +14,16 @@ const registerUser = require('./Routes/registerUser');
 require('dotenv').config();
 
 winston.add(new winston.transports.File({ filename: 'logfile.log' }));//then add winston transport and the filename for log file
-winston.add(new winston.transports.MongoDB({ 
+winston.add(new winston.transports.MongoDB({ //then add mongodb transport
     db: 'mongodb://localhost/mangaApp',
     level: 'error'
+    //you can also store differnt kind of error or message like
+    //error
+    //waren
+    //info
+    //verbose
+    //debug
+    //silly
 }));
 
 let key = process.env.jwtPrivateKey;
